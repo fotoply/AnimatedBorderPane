@@ -1,7 +1,12 @@
+package helpers;
+
+import com.sun.istack.internal.NotNull;
 import javafx.animation.FadeTransition;
+import javafx.animation.ScaleTransition;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
+import javafx.scene.control.DateCell;
 import javafx.util.Duration;
 
 /**
@@ -45,6 +50,7 @@ public class AnimationHelper {
      * Makes a given node slide in from the right. While sliding the object will also fade in.
      * Sliding and fading takes the duration specified in milliseconds.
      * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
      * @return the transition object for the slide animation
      */
     public static Transition slideFadeInFromRight(Node node, int duration) {
@@ -76,6 +82,7 @@ public class AnimationHelper {
      * Makes a given node slide out to the right. While sliding the object will also fade out.
      * Sliding and fading takes duration in milliseconds.
      * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
      * @return the transition object for the slide animation
      */
     public static Transition slideFadeOutToRight(Node node, int duration) {
@@ -102,6 +109,8 @@ public class AnimationHelper {
     /**
      * Makes a given node slide in from the left. Sliding takes duration in milliseconds.
      * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the trasition object
      */
     public static Transition slideInFromLeft(Node node, int duration) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
@@ -122,6 +131,7 @@ public class AnimationHelper {
     /**
      * Makes a given node slide out to the left. Sliding takes duration in milliseconds.
      * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
      * @return the transition object
      */
     public static Transition slideOutToLeft(Node node, int duration) {
@@ -129,6 +139,58 @@ public class AnimationHelper {
         translateTransition.setToX(-node.prefWidth(-1));
         translateTransition.play();
         return translateTransition;
+    }
+
+    /**
+     * Makes a given node pop-in by scaling. The animation takes 250 milliseconds.
+     * @param node the node to play the animation on
+     * @return the transition object
+     */
+    public static Transition growIn(@NotNull Node node) {
+        return growIn(node, 250);
+    }
+
+    /**
+     * Makes a given node pop-in by scaling. The animation takes duration in milliseconds.
+     * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the transition object
+     */
+    public static Transition growIn(@NotNull Node node, @NotNull int duration) {
+        ScaleTransition scaleTransition = new ScaleTransition(new Duration(duration), node);
+        scaleTransition.setFromX(0);
+        scaleTransition.setFromY(0);
+        scaleTransition.setToX(1);
+        scaleTransition.setToY(1);
+        scaleTransition.play();
+
+        return scaleTransition;
+    }
+
+    /**
+     * Makes a given node pop-out by scaling. The animation takes 250 milliseconds.
+     * @param node the node to play the animation on
+     * @return the transition object
+     */
+    public static Transition growOut(@NotNull Node node) {
+        return growOut(node, 250);
+    }
+
+    /**
+     * Makes a given node pop-out by scaling. The animation takes duration in milliseconds.
+     * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the transition object
+     */
+    public static Transition growOut(@NotNull Node node, @NotNull int duration) {
+        ScaleTransition scaleTransition = new ScaleTransition(new Duration(duration), node);
+        scaleTransition.setFromX(1);
+        scaleTransition.setFromY(1);
+        scaleTransition.setToX(0);
+        scaleTransition.setToY(0);
+        scaleTransition.play();
+
+        return scaleTransition;
     }
 
 }

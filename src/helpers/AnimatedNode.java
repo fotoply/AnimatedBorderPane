@@ -1,3 +1,5 @@
+package helpers;
+
 import javafx.animation.Transition;
 
 /**
@@ -6,7 +8,7 @@ import javafx.animation.Transition;
  */
 public interface AnimatedNode {
 
-    Transition OpenNode();
+    Transition openNode();
 
     Transition closeNode();
 
