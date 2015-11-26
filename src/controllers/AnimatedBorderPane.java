@@ -18,9 +18,6 @@ import java.io.IOException;
  */
 public class AnimatedBorderPane extends BorderPane {
 
-    @FXML
-    BorderPane root;
-
     private Object centerController;
     private Object topController;
     private Object leftController;
@@ -42,8 +39,16 @@ public class AnimatedBorderPane extends BorderPane {
 
     }
 
+    /**
+     * Sets the center pane of the BorderPane.
+     * Will automatically play any open animations assigned to the new node controller.
+     * Will automatically play any close animations assigned to the old node controller.
+     * If no animations is assigned to either of these it will default to a standard open/close animation.
+     * @param node the new node to fill the center
+     * @param controller the new controller
+     */
     public void setCenterAnimated(Node node, Object controller) {
-        if(root.getCenter() != null) {
+        if(getCenter() != null) {
             if (centerController != null && centerController instanceof AnimatedNode) {
                 ((AnimatedNode) centerController).closeNode().setOnFinished(event -> {
                     setCenter(null);
@@ -66,8 +71,56 @@ public class AnimatedBorderPane extends BorderPane {
         } else if(node != null) {
             setCenter(node);
             centerController = null;
+            AnimationHelper.growIn(node);
+        }
+    }
+
+    public void setTopAnimated(Node node, Object controller) {
+        if(getTop() != null) {
+            if (topController != null && topController instanceof AnimatedNode) {
+                ((AnimatedNode) topController).closeNode().setOnFinished(event -> {
+                    setTop(null);
+                    topController = null;
+                    setTopAnimated(node, controller);
+                });
+            } else {
+                AnimationHelper.slideOutToTop(node).setOnFinished(event -> {
+                    setTop(null);
+                    topController = null;
+                    setTopAnimated(node, controller);
+                });
+            }
+        }
+
+        if(controller != null && controller instanceof AnimatedNode && node != null) {
+            setTop(node);
+            topController = controller;
+            ((AnimatedNode)topController).openNode();
+        } else if(node != null) {
+            setTop(node);
+            topController = null;
+            AnimationHelper.slideInFromTop(node);
         }
     }
 
 
+    public Object getCenterController() {
+        return centerController;
+    }
+
+    public Object getTopController() {
+        return topController;
+    }
+
+    public Object getLeftController() {
+        return leftController;
+    }
+
+    public Object getRightController() {
+        return rightController;
+    }
+
+    public Object getBottomController() {
+        return bottomController;
+    }
 }
