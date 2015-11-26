@@ -57,6 +57,7 @@ public class AnimationHelper {
         node.setOpacity(0);
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
         translateTransition.setToX(0);
+        translateTransition.setFromX(node.prefWidth(-1));
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration), node);
         fadeTransition.setFromValue(0);
@@ -87,6 +88,7 @@ public class AnimationHelper {
      */
     public static Transition slideFadeOutToRight(Node node, int duration) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
+        translateTransition.setFromX(0);
         translateTransition.setToX(node.prefWidth(-1));
 
         FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration), node);
@@ -192,5 +194,51 @@ public class AnimationHelper {
 
         return scaleTransition;
     }
+
+    /**
+     * Makes a given node slide in from the top. Sliding takes 250 milliseconds.
+     * @param node the node to play the animation on
+     */
+    public static Transition slideInFromTop(Node node) {
+        return slideInFromTop(node,250);
+    }
+
+    /**
+     * Makes a given node slide in from the top. Sliding takes duration in milliseconds.
+     * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the trasition object
+     */
+    public static Transition slideInFromTop(Node node, int duration) {
+        TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromY(-node.prefHeight(-1));
+        translateTransition.setToY(0);
+        translateTransition.play();
+        return translateTransition;
+    }
+
+    /**
+     * Makes a given node slide out of the top. Sliding takes 250 milliseconds.
+     * @param node the node to play the animation on
+     * @return the transition object
+     */
+    public static Transition slideOutToTop(Node node) {
+        return slideOutToTop(node, 250);
+    }
+
+    /**
+     * Makes a given node slide out of the top. Sliding takes duration in milliseconds.
+     * @param node the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the transition object
+     */
+    public static Transition slideOutToTop(Node node, int duration) {
+        TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromY(0);
+        translateTransition.setToY(-node.prefHeight(-1));
+        translateTransition.play();
+        return translateTransition;
+    }
+
 
 }
