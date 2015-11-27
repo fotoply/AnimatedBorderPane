@@ -3,6 +3,7 @@ package controllers;
 import com.sun.istack.internal.Nullable;
 import helpers.AnimatedNode;
 import helpers.AnimationHelper;
+import javafx.animation.Interpolator;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -32,6 +33,16 @@ public class AnimatedBorderPane extends BorderPane {
     private CloseTypes rightCloseAnimation = CloseTypes.SlideOutToRight;
     private OpenTypes bottomOpenAnimation = OpenTypes.SlideInFromBottom;
     private CloseTypes bottomCloseAnimation = CloseTypes.SlideOutToBottom;
+    private Interpolator centerInterpolator;
+    private Interpolator topInterpolator;
+    private Interpolator leftInterpolator;
+    private Interpolator rightInterpolator;
+    private Interpolator bottomInterpolator;
+    private int centerDuration = 250;
+    private int topDuration = 250;
+    private int leftDuration = 250;
+    private int rightDuration = 250;
+    private int bottomDuration = 250;
 
     public AnimatedBorderPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -46,6 +57,88 @@ public class AnimatedBorderPane extends BorderPane {
             throw new RuntimeException(exception);
         }
 
+    }
+
+    //region gettersAndSetters
+
+    public int getBottomDuration() {
+        return bottomDuration;
+    }
+
+    public void setBottomDuration(int bottomDuration) {
+        this.bottomDuration = bottomDuration;
+    }
+
+    public int getRightDuration() {
+        return rightDuration;
+    }
+
+    public void setRightDuration(int rightDuration) {
+        this.rightDuration = rightDuration;
+    }
+
+    public int getLeftDuration() {
+        return leftDuration;
+    }
+
+    public void setLeftDuration(int leftDuration) {
+        this.leftDuration = leftDuration;
+    }
+
+    public int getTopDuration() {
+        return topDuration;
+    }
+
+    public void setTopDuration(int topDuration) {
+        this.topDuration = topDuration;
+    }
+
+    public int getCenterDuration() {
+        return centerDuration;
+    }
+
+    public void setCenterDuration(int centerDuration) {
+        this.centerDuration = centerDuration;
+    }
+
+    public Interpolator getBottomInterpolator() {
+        return bottomInterpolator;
+    }
+
+    public void setBottomInterpolator(Interpolator bottomInterpolator) {
+        this.bottomInterpolator = bottomInterpolator;
+    }
+
+    public Interpolator getRightInterpolator() {
+        return rightInterpolator;
+    }
+
+    public void setRightInterpolator(Interpolator rightInterpolator) {
+        this.rightInterpolator = rightInterpolator;
+    }
+
+    public Interpolator getLeftInterpolator() {
+        return leftInterpolator;
+    }
+
+    public void setLeftInterpolator(Interpolator leftInterpolator) {
+        this.leftInterpolator = leftInterpolator;
+    }
+
+    public Interpolator getTopInterpolator() {
+        return topInterpolator;
+    }
+
+    public void setTopInterpolator(Interpolator topInterpolator) {
+        this.topInterpolator = topInterpolator;
+    }
+
+    public Interpolator getCenterInterpolator() {
+        return centerInterpolator;
+    }
+
+    public void setCenterInterpolator(Interpolator centerInterpolator) {
+        this.centerInterpolator = centerInterpolator;
     }
 
     public OpenTypes getCenterOpenAnimation() {
@@ -126,6 +219,27 @@ public class AnimatedBorderPane extends BorderPane {
 
     public void setBottomCloseAnimation(CloseTypes bottomCloseAnimation) {
         this.bottomCloseAnimation = bottomCloseAnimation;
+    }
+    //endregion
+
+    private void animateBasedOnOpenType(Node node, OpenTypes openType, int Duration) {
+        switch (openType) {
+            case GrowIn:
+
+                break;
+            case SlideInFromRight:
+
+                break;
+            case SlideInFromTop:
+
+                break;
+            case SlideInFromBottom:
+
+                break;
+            case SlideInFromLeft:
+
+                break;
+        }
     }
 
     /**
