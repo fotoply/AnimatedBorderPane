@@ -22,6 +22,16 @@ public class AnimatedBorderPane extends BorderPane {
     private Object leftController;
     private Object rightController;
     private Object bottomController;
+    private OpenTypes centerOpenAnimation = OpenTypes.GrowIn;
+    private CloseTypes centerCloseAnimation = CloseTypes.ShrinkOut;
+    private OpenTypes topOpenAnimation = OpenTypes.SlideInFromTop;
+    private CloseTypes topCloseAnimation = CloseTypes.SlideOutToTop;
+    private OpenTypes leftOpenAnimation = OpenTypes.SlideInFromLeft;
+    private CloseTypes leftCloseAnimation = CloseTypes.SlideOutToLeft;
+    private OpenTypes rightOpenAnimation = OpenTypes.SlideInFromRight;
+    private CloseTypes rightCloseAnimation = CloseTypes.SlideOutToRight;
+    private OpenTypes bottomOpenAnimation = OpenTypes.SlideInFromBottom;
+    private CloseTypes bottomCloseAnimation = CloseTypes.SlideOutToBottom;
 
     public AnimatedBorderPane() {
         FXMLLoader fxmlLoader = new FXMLLoader(
@@ -36,6 +46,86 @@ public class AnimatedBorderPane extends BorderPane {
             throw new RuntimeException(exception);
         }
 
+    }
+
+    public OpenTypes getCenterOpenAnimation() {
+        return centerOpenAnimation;
+    }
+
+    public void setCenterOpenAnimation(OpenTypes centerOpenAnimation) {
+        this.centerOpenAnimation = centerOpenAnimation;
+    }
+
+    public CloseTypes getCenterCloseAnimation() {
+        return centerCloseAnimation;
+    }
+
+    public void setCenterCloseAnimation(CloseTypes centerCloseAnimation) {
+        this.centerCloseAnimation = centerCloseAnimation;
+    }
+
+    public OpenTypes getTopOpenAnimation() {
+        return topOpenAnimation;
+    }
+
+    public void setTopOpenAnimation(OpenTypes topOpenAnimation) {
+        this.topOpenAnimation = topOpenAnimation;
+    }
+
+    public CloseTypes getTopCloseAnimation() {
+        return topCloseAnimation;
+    }
+
+    public void setTopCloseAnimation(CloseTypes topCloseAnimation) {
+        this.topCloseAnimation = topCloseAnimation;
+    }
+
+    public OpenTypes getLeftOpenAnimation() {
+        return leftOpenAnimation;
+    }
+
+    public void setLeftOpenAnimation(OpenTypes leftOpenAnimation) {
+        this.leftOpenAnimation = leftOpenAnimation;
+    }
+
+    public CloseTypes getLeftCloseAnimation() {
+        return leftCloseAnimation;
+    }
+
+    public void setLeftCloseAnimation(CloseTypes leftCloseAnimation) {
+        this.leftCloseAnimation = leftCloseAnimation;
+    }
+
+    public OpenTypes getRightOpenAnimation() {
+        return rightOpenAnimation;
+    }
+
+    public void setRightOpenAnimation(OpenTypes rightOpenAnimation) {
+        this.rightOpenAnimation = rightOpenAnimation;
+    }
+
+    public CloseTypes getRightCloseAnimation() {
+        return rightCloseAnimation;
+    }
+
+    public void setRightCloseAnimation(CloseTypes rightCloseAnimation) {
+        this.rightCloseAnimation = rightCloseAnimation;
+    }
+
+    public OpenTypes getBottomOpenAnimation() {
+        return bottomOpenAnimation;
+    }
+
+    public void setBottomOpenAnimation(OpenTypes bottomOpenAnimation) {
+        this.bottomOpenAnimation = bottomOpenAnimation;
+    }
+
+    public CloseTypes getBottomCloseAnimation() {
+        return bottomCloseAnimation;
+    }
+
+    public void setBottomCloseAnimation(CloseTypes bottomCloseAnimation) {
+        this.bottomCloseAnimation = bottomCloseAnimation;
     }
 
     /**
@@ -174,7 +264,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                AnimationHelper.slideFadeOutToRight(node).setOnFinished(event -> {
+                AnimationHelper.slideOutToRight(node).setOnFinished(event -> {
                     setRight(null);
                     rightController = null;
                     setRightAnimated(node, controller);
@@ -190,7 +280,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setRight(node);
             rightController = null;
-            AnimationHelper.slideFadeInFromRight(node);
+            AnimationHelper.slideInFromRight(node);
         }
     }
 
@@ -252,4 +342,8 @@ public class AnimatedBorderPane extends BorderPane {
     public Object getBottomController() {
         return bottomController;
     }
+
+    public enum OpenTypes {GrowIn, SlideInFromLeft, SlideInFromRight, SlideInFromTop, SlideInFromBottom}
+
+    public enum CloseTypes {ShrinkOut, SlideOutToLeft, SlideOutToRight, SlideOutToTop, SlideOutToBottom}
 }

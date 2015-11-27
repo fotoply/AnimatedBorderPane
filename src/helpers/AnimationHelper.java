@@ -1,10 +1,7 @@
 package helpers;
 
 import com.sun.istack.internal.NotNull;
-import javafx.animation.FadeTransition;
-import javafx.animation.ScaleTransition;
-import javafx.animation.Transition;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
@@ -38,69 +35,59 @@ public class AnimationHelper {
     }
 
     /**
-     * Makes a given node slide in from the right. While sliding the object will also fade in.
+     * Makes a given node slide in from the right.
      * Sliding and fading takes 300 milliseconds.
      *
      * @param node the node to play the animation on
      * @return the transition object for the slide animation
      */
-    public static Transition slideFadeInFromRight(Node node) {
-        return slideFadeInFromRight(node, 300);
+    public static Transition slideInFromRight(Node node) {
+        return slideInFromRight(node, 300, Interpolator.EASE_BOTH);
     }
 
     /**
-     * Makes a given node slide in from the right. While sliding the object will also fade in.
+     * Makes a given node slide in from the right.
      * Sliding and fading takes the duration specified in milliseconds.
      *
      * @param node     the node to play the animation on
      * @param duration the duration in milliseconds
      * @return the transition object for the slide animation
      */
-    public static Transition slideFadeInFromRight(Node node, int duration) {
+    public static Transition slideInFromRight(Node node, int duration, Interpolator interpolator) {
         node.setOpacity(0);
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
         translateTransition.setToX(0);
         translateTransition.setFromX(node.prefWidth(-1));
-
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration), node);
-        fadeTransition.setFromValue(0);
-        fadeTransition.setToValue(1);
-
-        fadeTransition.play();
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
 
         return translateTransition;
     }
 
     /**
-     * Makes a given node slide out to the right. While sliding the object will also fade out.
+     * Makes a given node slide out to the right.
      * Sliding and fading takes 150 milliseconds.
      *
      * @param node the node to play the animation on
      * @return the transition object for the slide animation
      */
-    public static Transition slideFadeOutToRight(Node node) {
-        return slideFadeOutToRight(node, 150);
+    public static Transition slideOutToRight(Node node) {
+        return slideOutToRight(node, 150, Interpolator.EASE_BOTH);
     }
 
     /**
-     * Makes a given node slide out to the right. While sliding the object will also fade out.
+     * Makes a given node slide out to the right.
      * Sliding and fading takes duration in milliseconds.
      *
      * @param node     the node to play the animation on
      * @param duration the duration in milliseconds
      * @return the transition object for the slide animation
      */
-    public static Transition slideFadeOutToRight(Node node, int duration) {
+    public static Transition slideOutToRight(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
         translateTransition.setFromX(0);
         translateTransition.setToX(node.prefWidth(-1));
-
-        FadeTransition fadeTransition = new FadeTransition(Duration.millis(duration), node);
-        fadeTransition.setFromValue(1);
-        fadeTransition.setToValue(0);
-
-        fadeTransition.play();
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
@@ -111,7 +98,7 @@ public class AnimationHelper {
      * @param node the node to play the animation on
      */
     public static Transition slideInFromLeft(Node node) {
-        return slideInFromLeft(node, 250);
+        return slideInFromLeft(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -121,9 +108,11 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the trasition object
      */
-    public static Transition slideInFromLeft(Node node, int duration) {
+    public static Transition slideInFromLeft(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromX(-node.prefWidth(-1));
         translateTransition.setToX(0);
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
