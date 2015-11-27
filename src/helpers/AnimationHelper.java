@@ -3,6 +3,7 @@ package helpers;
 import com.sun.istack.internal.NotNull;
 import javafx.animation.*;
 import javafx.scene.Node;
+import javafx.stage.Window;
 import javafx.util.Duration;
 
 /**
@@ -32,9 +33,10 @@ public class AnimationHelper {
      * @return the transition object for the slide animation
      */
     public static Transition slideInFromRight(Node node, int duration, Interpolator interpolator) {
+
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
         translateTransition.setToX(0);
-        translateTransition.setFromX(node.prefWidth(-1));
+        translateTransition.setFromX(node.parentToLocal(node.getParent().prefWidth(-1),0).getX()+5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
 
@@ -61,8 +63,9 @@ public class AnimationHelper {
      * @return the transition object for the slide animation
      */
     public static Transition slideOutToRight(Node node, int duration, Interpolator interpolator) {
+
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
-        translateTransition.setToX(node.prefWidth(-1));
+        translateTransition.setToX(node.parentToLocal(node.getParent().prefWidth(-1),0).getX()+5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
@@ -85,8 +88,9 @@ public class AnimationHelper {
      * @return the trasition object
      */
     public static Transition slideInFromLeft(Node node, int duration, Interpolator interpolator) {
+
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setFromX(-node.prefWidth(-1));
+        translateTransition.setFromX(node.parentToLocal(0,0).getX()-node.prefWidth(-1)-5);
         translateTransition.setToX(0);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
@@ -112,7 +116,7 @@ public class AnimationHelper {
      */
     public static Transition slideOutToLeft(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setToX(-node.prefWidth(-1));
+        translateTransition.setToX(node.parentToLocal(0,0).getX()-node.prefWidth(-1)-5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
@@ -193,8 +197,9 @@ public class AnimationHelper {
      * @return the trasition object
      */
     public static Transition slideInFromTop(Node node, int duration, Interpolator interpolator) {
+
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setFromY(-node.prefHeight(-1));
+        translateTransition.setFromY(node.parentToLocal(0,0).getY()-node.prefHeight(-1)-5);
         translateTransition.setToY(0);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
@@ -220,8 +225,7 @@ public class AnimationHelper {
      */
     public static Transition slideOutToTop(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        //translateTransition.setFromY(0);
-        translateTransition.setToY(-node.prefHeight(-1));
+        translateTransition.setToY(node.parentToLocal(0,0).getY()-node.prefHeight(-1)-5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
@@ -245,7 +249,7 @@ public class AnimationHelper {
      */
     public static Transition slideInFromBottom(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setFromY(node.prefHeight(-1));
+        translateTransition.setFromY(node.parentToLocal(0,node.getParent().prefHeight(-1)).getY()+5);
         translateTransition.setToY(0);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
@@ -270,8 +274,9 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition slideOutToBottom(Node node, int duration, Interpolator interpolator) {
+
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setToY(node.prefHeight(-1));
+        translateTransition.setToY(node.parentToLocal(0,node.getParent().prefHeight(-1)).getY()+5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;

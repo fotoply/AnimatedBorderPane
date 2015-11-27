@@ -24,7 +24,13 @@ public class AnimationTesterController {
     void playAllAnimations() {
         Button b = new Button("I am center");
         Random rnd = new Random();
-        b.setOnAction(event -> {playAllAnimations(); root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.values()[rnd.nextInt(AnimatedBorderPane.CloseTypes.values().length)]); root.setCenterDuration(2000);});
+        b.setOnAction(event -> {
+            playAllAnimations();
+            root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.values()[rnd.nextInt(AnimatedBorderPane.OpenTypes.values().length)]);
+            System.out.println(root.getCenterOpenAnimation());
+            root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.values()[rnd.nextInt(AnimatedBorderPane.CloseTypes.values().length)]);
+            System.out.println(root.getCenterCloseAnimation());
+            root.setCenterDuration(2000);});
 
         root.setCenterAnimated(b,null);
 
