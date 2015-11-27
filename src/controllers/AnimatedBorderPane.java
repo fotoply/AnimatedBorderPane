@@ -4,6 +4,7 @@ import com.sun.istack.internal.Nullable;
 import helpers.AnimatedNode;
 import helpers.AnimationHelper;
 import javafx.animation.Interpolator;
+import javafx.animation.Transition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -222,24 +223,38 @@ public class AnimatedBorderPane extends BorderPane {
     }
     //endregion
 
-    private void animateBasedOnOpenType(Node node, OpenTypes openType, int Duration) {
+    private Transition animateBasedOnOpenType(Node node, OpenTypes openType, int duration, Interpolator interpolator) {
         switch (openType) {
             case GrowIn:
-
-                break;
+                return AnimationHelper.growIn(node,duration,interpolator);
             case SlideInFromRight:
-
-                break;
+                return AnimationHelper.slideInFromRight(node,duration,interpolator);
             case SlideInFromTop:
-
-                break;
+                return AnimationHelper.slideInFromTop(node,duration,interpolator);
             case SlideInFromBottom:
-
-                break;
+                return AnimationHelper.slideInFromBottom(node,duration,interpolator);
             case SlideInFromLeft:
-
-                break;
+                return AnimationHelper.slideInFromLeft(node,duration,interpolator);
         }
+
+        return AnimationHelper.growIn(node,duration,interpolator);
+    }
+
+    private Transition animateBasedOnCloseType(Node node, CloseTypes closeType, int duration, Interpolator interpolator) {
+        switch (closeType) {
+            case ShrinkOut:
+                return AnimationHelper.growOut(node,duration,interpolator);
+            case SlideOutToLeft:
+                return AnimationHelper.slideOutToLeft(node,duration,interpolator);
+            case SlideOutToRight:
+                return AnimationHelper.slideOutToRight(node,duration,interpolator);
+            case SlideOutToTop:
+                return AnimationHelper.slideOutToTop(node,duration,interpolator);
+            case SlideOutToBottom:
+                return AnimationHelper.slideOutToBottom(node,duration,interpolator);
+        }
+
+        return AnimationHelper.growIn(node,duration,interpolator);
     }
 
     /**
@@ -277,7 +292,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setCenter(node);
             centerController = null;
-            AnimationHelper.growIn(node);
+            animateBasedOnOpenType(node, centerOpenAnimation, centerDuration,centerInterpolator);
         }
     }
 
