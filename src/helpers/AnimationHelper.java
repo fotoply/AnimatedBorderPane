@@ -85,7 +85,6 @@ public class AnimationHelper {
      */
     public static Transition slideOutToRight(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
-        translateTransition.setFromX(0);
         translateTransition.setToX(node.prefWidth(-1));
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
@@ -124,7 +123,7 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition slideOutToLeft(Node node) {
-        return slideOutToLeft(node, 250);
+        return slideOutToLeft(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -134,9 +133,10 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the transition object
      */
-    public static Transition slideOutToLeft(Node node, int duration) {
+    public static Transition slideOutToLeft(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
         translateTransition.setToX(-node.prefWidth(-1));
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
@@ -148,7 +148,7 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition growIn(@NotNull Node node) {
-        return growIn(node, 250);
+        return growIn(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -158,12 +158,13 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the transition object
      */
-    public static Transition growIn(@NotNull Node node, @NotNull int duration) {
+    public static Transition growIn(@NotNull Node node, @NotNull int duration, Interpolator interpolator) {
         ScaleTransition scaleTransition = new ScaleTransition(new Duration(duration), node);
         scaleTransition.setFromX(0);
         scaleTransition.setFromY(0);
         scaleTransition.setToX(1);
         scaleTransition.setToY(1);
+        scaleTransition.setInterpolator(interpolator);
         scaleTransition.play();
 
         return scaleTransition;
@@ -176,7 +177,7 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition growOut(@NotNull Node node) {
-        return growOut(node, 250);
+        return growOut(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -186,12 +187,13 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the transition object
      */
-    public static Transition growOut(@NotNull Node node, @NotNull int duration) {
+    public static Transition growOut(@NotNull Node node, @NotNull int duration, Interpolator interpolator) {
         ScaleTransition scaleTransition = new ScaleTransition(new Duration(duration), node);
-        scaleTransition.setFromX(1);
-        scaleTransition.setFromY(1);
+        //scaleTransition.setFromX(1);
+        //scaleTransition.setFromY(1);
         scaleTransition.setToX(0);
         scaleTransition.setToY(0);
+        scaleTransition.setInterpolator(interpolator);
         scaleTransition.play();
 
         return scaleTransition;
@@ -203,7 +205,7 @@ public class AnimationHelper {
      * @param node the node to play the animation on
      */
     public static Transition slideInFromTop(Node node) {
-        return slideInFromTop(node, 250);
+        return slideInFromTop(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -213,10 +215,11 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the trasition object
      */
-    public static Transition slideInFromTop(Node node, int duration) {
+    public static Transition slideInFromTop(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
         translateTransition.setFromY(-node.prefHeight(-1));
         translateTransition.setToY(0);
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
@@ -228,7 +231,7 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition slideOutToTop(Node node) {
-        return slideOutToTop(node, 250);
+        return slideOutToTop(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -238,10 +241,11 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the transition object
      */
-    public static Transition slideOutToTop(Node node, int duration) {
+    public static Transition slideOutToTop(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setFromY(0);
+        //translateTransition.setFromY(0);
         translateTransition.setToY(-node.prefHeight(-1));
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
@@ -252,7 +256,7 @@ public class AnimationHelper {
      * @param node the node to play the animation on
      */
     public static Transition slideInFromBottom(Node node) {
-        return slideInFromBottom(node, 250);
+        return slideInFromBottom(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -262,10 +266,11 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the trasition object
      */
-    public static Transition slideInFromBottom(Node node, int duration) {
+    public static Transition slideInFromBottom(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
         translateTransition.setFromY(node.prefHeight(-1));
         translateTransition.setToY(0);
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
@@ -277,7 +282,7 @@ public class AnimationHelper {
      * @return the transition object
      */
     public static Transition slideOutToBottom(Node node) {
-        return slideOutToBottom(node, 250);
+        return slideOutToBottom(node, 250, Interpolator.EASE_BOTH);
     }
 
     /**
@@ -287,10 +292,10 @@ public class AnimationHelper {
      * @param duration the duration in milliseconds
      * @return the transition object
      */
-    public static Transition slideOutToBottom(Node node, int duration) {
+    public static Transition slideOutToBottom(Node node, int duration, Interpolator interpolator) {
         TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
-        translateTransition.setFromY(0);
         translateTransition.setToY(node.prefHeight(-1));
+        translateTransition.setInterpolator(interpolator);
         translateTransition.play();
         return translateTransition;
     }
