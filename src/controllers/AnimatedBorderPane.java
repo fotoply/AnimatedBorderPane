@@ -276,15 +276,20 @@ public class AnimatedBorderPane extends BorderPane {
      */
     public void setCenterAnimated(@Nullable Node node, @Nullable Object controller) {
         if (getCenter() != null) {
+            System.out.println("Node exsists in center, closing it");
             if (centerController != null && centerController instanceof AnimatedNode) {
+                System.out.println("Node is custom");
                 ((AnimatedNode) centerController).closeNode().setOnFinished(event -> {
+                    System.out.println("Animation finished");
                     setCenter(null);
                     centerController = null;
                     setCenterAnimated(node, controller);
                 });
                 return;
             } else {
-                animateBasedOnCloseType(node,centerCloseAnimation,centerDuration,centerInterpolator).setOnFinished(event -> {
+                System.out.println("Node is standard");
+                animateBasedOnCloseType(getCenter(),centerCloseAnimation,centerDuration,centerInterpolator).setOnFinished(event -> {
+                    System.out.println("Animation finished");
                     setCenter(null);
                     centerController = null;
                     setCenterAnimated(node, controller);
@@ -323,7 +328,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(node,topCloseAnimation,topDuration,topInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getTop(),topCloseAnimation,topDuration,topInterpolator).setOnFinished(event -> {
                     setTop(null);
                     topController = null;
                     setTopAnimated(node, controller);
@@ -362,7 +367,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(node,leftCloseAnimation,leftDuration,leftInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getLeft(),leftCloseAnimation,leftDuration,leftInterpolator).setOnFinished(event -> {
                     setLeft(null);
                     leftController = null;
                     setLeftAnimated(node, controller);
@@ -401,7 +406,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-               animateBasedOnCloseType(node,rightCloseAnimation,rightDuration,rightInterpolator).setOnFinished(event -> {
+               animateBasedOnCloseType(getRight(),rightCloseAnimation,rightDuration,rightInterpolator).setOnFinished(event -> {
                     setRight(null);
                     rightController = null;
                     setRightAnimated(node, controller);
@@ -440,7 +445,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(node,bottomCloseAnimation,bottomDuration,bottomInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getBottom(),bottomCloseAnimation,bottomDuration,bottomInterpolator).setOnFinished(event -> {
                     setBottom(null);
                     bottomController = null;
                     setBottomAnimated(node, controller);

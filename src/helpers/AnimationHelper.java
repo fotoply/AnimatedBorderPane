@@ -166,8 +166,8 @@ public class AnimationHelper {
      */
     public static Transition growOut(@NotNull Node node, @NotNull int duration, Interpolator interpolator) {
         ScaleTransition scaleTransition = new ScaleTransition(new Duration(duration), node);
-        //scaleTransition.setFromX(1);
-        //scaleTransition.setFromY(1);
+        scaleTransition.setFromX(1);
+        scaleTransition.setFromY(1);
         scaleTransition.setToX(0);
         scaleTransition.setToY(0);
         scaleTransition.setInterpolator(interpolator);
