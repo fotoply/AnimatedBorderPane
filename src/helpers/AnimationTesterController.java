@@ -21,7 +21,7 @@ public class AnimationTesterController {
     @FXML
     void playAllAnimations() {
         Button b = new Button("I am center");
-        b.setOnAction(event -> playAllAnimations());
+        b.setOnAction(event -> {playAllAnimations(); /*root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.SlideInFromBottom);*/});
 
         root.setCenterAnimated(b,null);
 
