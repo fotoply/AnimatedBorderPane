@@ -12,28 +12,6 @@ import javafx.util.Duration;
  * @author Niels Norberg
  */
 public class AnimationHelper {
-
-    /**
-     * Initializer for a sliding and fading animation on a given node.
-     * Should be called in the initialize() function.
-     *
-     * @param node the node to initialize
-     */
-    public static void initializeSlideFadeFromRight(Node node) {
-        node.setTranslateX(node.prefWidth(-1));
-        node.setOpacity(0);
-    }
-
-    /**
-     * Initializer for playing a sliding animation on a given node.
-     * Should be called in the initialize() function.
-     *
-     * @param node the node to initialize
-     */
-    public static void initializeSlideFromLeft(Node node) {
-        node.setTranslateX(node.prefWidth(-1));
-    }
-
     /**
      * Makes a given node slide in from the right.
      * Sliding and fading takes 300 milliseconds.
@@ -54,7 +32,6 @@ public class AnimationHelper {
      * @return the transition object for the slide animation
      */
     public static Transition slideInFromRight(Node node, int duration, Interpolator interpolator) {
-        node.setOpacity(0);
         TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
         translateTransition.setToX(0);
         translateTransition.setFromX(node.prefWidth(-1));
