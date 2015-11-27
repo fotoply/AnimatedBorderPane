@@ -55,12 +55,14 @@ public class AnimatedBorderPane extends BorderPane {
                     centerController = null;
                     setCenterAnimated(node, controller);
                 });
+                return;
             } else {
                 AnimationHelper.growOut(node).setOnFinished(event -> {
                     setCenter(null);
                     centerController = null;
                     setCenterAnimated(node, controller);
                 });
+                return;
             }
         }
 
@@ -92,12 +94,14 @@ public class AnimatedBorderPane extends BorderPane {
                     topController = null;
                     setTopAnimated(node, controller);
                 });
+                return;
             } else {
                 AnimationHelper.slideOutToTop(node).setOnFinished(event -> {
                     setTop(null);
                     topController = null;
                     setTopAnimated(node, controller);
                 });
+                return;
             }
         }
 
@@ -129,12 +133,14 @@ public class AnimatedBorderPane extends BorderPane {
                     leftController = null;
                     setLeftAnimated(node, controller);
                 });
+                return;
             } else {
                 AnimationHelper.slideOutToLeft(node).setOnFinished(event -> {
                     setLeft(null);
                     leftController = null;
                     setLeftAnimated(node, controller);
                 });
+                return;
             }
         }
 
@@ -166,12 +172,14 @@ public class AnimatedBorderPane extends BorderPane {
                     rightController = null;
                     setRightAnimated(node, controller);
                 });
+                return;
             } else {
                 AnimationHelper.slideFadeOutToRight(node).setOnFinished(event -> {
                     setRight(null);
                     rightController = null;
                     setRightAnimated(node, controller);
                 });
+                return;
             }
         }
 
@@ -203,12 +211,14 @@ public class AnimatedBorderPane extends BorderPane {
                     bottomController = null;
                     setBottomAnimated(node, controller);
                 });
+                return;
             } else {
                 AnimationHelper.slideOutToBottom(node).setOnFinished(event -> {
                     setBottom(null);
                     bottomController = null;
                     setBottomAnimated(node, controller);
                 });
+                return;
             }
         }
 
