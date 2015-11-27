@@ -2,8 +2,10 @@ package helpers;
 
 import controllers.AnimatedBorderPane;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 /**
@@ -18,8 +20,11 @@ public class AnimationTesterController {
 
     @FXML
     void playAllAnimations() {
-        root.setCenterAnimated(new Button("I am center"),null);
-        ((Button)root.getCenter()).setOnAction(event -> playAllAnimations());
+        Button b = new Button("I am center");
+        b.setOnAction(event -> playAllAnimations());
+
+        root.setCenterAnimated(b,null);
+
         root.setTopAnimated(new Text("I am top"),null);
         root.setBottomAnimated(new Text("I am bottom"),null);
         root.setLeftAnimated(new Text("I am left"),null);
