@@ -257,5 +257,55 @@ public class AnimationHelper {
         return translateTransition;
     }
 
+    /**
+     * Makes a given node slide in from the bottom. Sliding takes 250 milliseconds.
+     *
+     * @param node the node to play the animation on
+     */
+    public static Transition slideInFromBottom(Node node) {
+        return slideInFromBottom(node, 250);
+    }
+
+    /**
+     * Makes a given node slide in from the bottom. Sliding takes duration in milliseconds.
+     *
+     * @param node     the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the trasition object
+     */
+    public static Transition slideInFromBottom(Node node, int duration) {
+        TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromY(node.prefHeight(-1));
+        translateTransition.setToY(0);
+        translateTransition.play();
+        return translateTransition;
+    }
+
+    /**
+     * Makes a given node slide out of the bottom. Sliding takes 250 milliseconds.
+     *
+     * @param node the node to play the animation on
+     * @return the transition object
+     */
+    public static Transition slideOutToBottom(Node node) {
+        return slideOutToBottom(node, 250);
+    }
+
+    /**
+     * Makes a given node slide out of the bottom. Sliding takes duration in milliseconds.
+     *
+     * @param node     the node to play the animation on
+     * @param duration the duration in milliseconds
+     * @return the transition object
+     */
+    public static Transition slideOutToBottom(Node node, int duration) {
+        TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromY(0);
+        translateTransition.setToY(node.prefHeight(-1));
+        translateTransition.play();
+        return translateTransition;
+    }
+
+
 
 }

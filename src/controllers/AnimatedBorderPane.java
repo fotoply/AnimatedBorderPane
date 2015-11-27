@@ -204,7 +204,7 @@ public class AnimatedBorderPane extends BorderPane {
                     setBottomAnimated(node, controller);
                 });
             } else {
-                AnimationHelper.slideFadeOutToRight(node).setOnFinished(event -> {
+                AnimationHelper.slideOutToBottom(node).setOnFinished(event -> {
                     setBottom(null);
                     bottomController = null;
                     setBottomAnimated(node, controller);
@@ -219,7 +219,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setBottom(node);
             bottomController = null;
-            AnimationHelper.growIn(node);
+            AnimationHelper.slideInFromBottom(node);
         }
     }
 
