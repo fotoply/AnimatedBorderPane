@@ -23,9 +23,14 @@ public class AnimationTesterController implements AnimatedNode{
 
     @FXML
     private void initialize() {
-        root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.SlideOutToBottom);
-        root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.GrowIn);
-        root.setCenterAnimated(center,this);
+        root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.ShrinkOut);
+        root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.SlideInFromLeft);
+
+        //root.setLeftCloseAnimation(AnimatedBorderPane.CloseTypes.ShrinkOut);
+
+        //root.setCenterAnimated(center,this);
+        /*root.setLeftOpenAnimation(AnimatedBorderPane.OpenTypes.GrowIn);
+        root.setLeftCloseAnimation(AnimatedBorderPane.CloseTypes.ShrinkOut);*/
     }
 
     @FXML
@@ -42,7 +47,7 @@ public class AnimationTesterController implements AnimatedNode{
 
     @FXML
     void centerClicked() {
-        root.setCenterAnimated(center,this);
+        root.setCenterAnimated(center,null);
         root.setLeftAnimated(leftSide,null);
     }
 

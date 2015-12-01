@@ -229,6 +229,16 @@ public class AnimatedBorderPane extends BorderPane {
             interpolator = Interpolator.EASE_BOTH;
         }
 
+        if(node.getScaleX() != 1 || node.getScaleY() != 1) {
+            node.setScaleX(1);
+            node.setScaleY(1);
+        }
+
+        if(node.getTranslateX() != 0 || node.getTranslateY() != 0) {
+            node.setTranslateX(0);
+            node.setTranslateY(0);
+        }
+
         switch (openType) {
             case GrowIn:
                 return AnimationHelper.growIn(node, duration, interpolator);
@@ -250,6 +260,16 @@ public class AnimatedBorderPane extends BorderPane {
             interpolator = Interpolator.EASE_BOTH;
         }
 
+        if(node.getScaleX() != 1 || node.getScaleY() != 1) {
+            node.setScaleX(1);
+            node.setScaleY(1);
+        }
+
+        if(node.getTranslateX() != 0 || node.getTranslateY() != 0) {
+            node.setTranslateX(0);
+            node.setTranslateY(0);
+        }
+
         switch (closeType) {
             case ShrinkOut:
                 return AnimationHelper.growOut(node, duration, interpolator);
@@ -263,7 +283,7 @@ public class AnimatedBorderPane extends BorderPane {
                 return AnimationHelper.slideOutToBottom(node, duration, interpolator);
         }
 
-        return AnimationHelper.growIn(node, duration, interpolator);
+        return AnimationHelper.growOut(node, duration, interpolator);
     }
 
     /**

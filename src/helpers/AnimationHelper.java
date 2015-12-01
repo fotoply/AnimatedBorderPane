@@ -66,7 +66,8 @@ public class AnimationHelper {
      */
     public static Transition slideOutToRight(@NotNull Node node, @NotNull int duration, @NotNull Interpolator interpolator) {
 
-        TranslateTransition translateTransition = new TranslateTransition(Duration.millis(duration), node);
+        TranslateTransition translateTransition = new TranslateTransition(new Duration(duration), node);
+        translateTransition.setFromX(0);
         translateTransition.setToX(node.parentToLocal(node.getParent().prefWidth(-1), 0).getX() + 5);
         translateTransition.setInterpolator(interpolator);
         translateTransition.play();
