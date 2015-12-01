@@ -1,24 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import controllers.*?>
 <?import java.lang.*?>
 
 <AnimatedBorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="helpers.AnimationTesterController">
-   <top>
-      <Text layoutX="20.0" layoutY="20.0" onDragDetected="#playAllAnimations" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
-   </top>
    <left>
-      <Text layoutX="20.0" layoutY="20.0" onDragDetected="#playAllAnimations" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
+      <Label fx:id="leftSide" onMouseClicked="#leftClicked" prefHeight="374.0" prefWidth="135.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
    </left>
+   <top>
+      <Label fx:id="topSide" maxHeight="-Infinity" minHeight="-Infinity" onMouseClicked="#topClicked" prefHeight="80.0" prefWidth="514.0" style="-fx-background-color: blue;" BorderPane.alignment="CENTER" />
+   </top>
    <right>
-      <Text layoutX="20.0" layoutY="20.0" onDragDetected="#playAllAnimations" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
+      <Label fx:id="rightSide" onMouseClicked="#rightClicked" prefHeight="248.0" prefWidth="135.0" style="-fx-background-color: green;" BorderPane.alignment="CENTER" />
    </right>
-   <bottom>
-      <Text layoutX="20.0" layoutY="20.0" onDragDetected="#playAllAnimations" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
-   </bottom>
    <center>
-      <Button mnemonicParsing="false" onAction="#playAllAnimations" text="Button"/>
+      <Label fx:id="center" onMouseClicked="#centerClicked" prefHeight="250.0" prefWidth="305.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
    </center>
 </AnimatedBorderPane>

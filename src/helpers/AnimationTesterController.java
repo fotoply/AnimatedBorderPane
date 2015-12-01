@@ -1,8 +1,12 @@
 package helpers;
 
 import controllers.AnimatedBorderPane;
+import javafx.animation.Interpolator;
+import javafx.animation.Transition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 
 import java.util.Random;
@@ -12,30 +16,58 @@ import java.util.Random;
  *
  * @author Niels Norberg
  */
-public class AnimationTesterController {
+public class AnimationTesterController implements AnimatedNode{
 
     @FXML
     private AnimatedBorderPane root;
 
     @FXML
-    void playAllAnimations() {
-        Button b = new Button("I am center");
-        Random rnd = new Random();
-        b.setOnAction(event -> {
-            root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.values()[rnd.nextInt(AnimatedBorderPane.OpenTypes.values().length)]);
-            System.out.println(root.getCenterOpenAnimation());
-            root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.values()[rnd.nextInt(AnimatedBorderPane.CloseTypes.values().length)]);
-            System.out.println(root.getCenterCloseAnimation());
-            root.setCenterDuration(2000);
-            playAllAnimations();
-        });
-
-
-        root.setCenterAnimated(b, null);
-        root.setTopAnimated(new Text("I am top"), null);
-        root.setBottomAnimated(new Text("I am bottom"), null);
-        root.setLeftAnimated(new Text("I am left"), null);
-        root.setRightAnimated(new Text("I am right"), null);
+    private void initialize() {
+        root.setCenterCloseAnimation(AnimatedBorderPane.CloseTypes.SlideOutToBottom);
+        root.setCenterOpenAnimation(AnimatedBorderPane.OpenTypes.GrowIn);
+        root.setCenterAnimated(center,this);
     }
 
+    @FXML
+    private Label leftSide;
+
+    @FXML
+    private Label topSide;
+
+    @FXML
+    private Label rightSide;
+
+    @FXML
+    private Label center;
+
+    @FXML
+    void centerClicked() {
+        root.setCenterAnimated(center,this);
+        root.setLeftAnimated(leftSide,null);
+    }
+
+    @FXML
+    void leftClicked() {
+        root.setLeftAnimated(leftSide,null);
+    }
+
+    @FXML
+    void rightClicked() {
+        root.setRightAnimated(rightSide,null);
+    }
+
+    @FXML
+    void topClicked() {
+        root.setTopAnimated(topSide,null);
+    }
+
+    @Override
+    public Transition openNode() {
+        return AnimationHelper.slideInFromBottom(center, 400, Interpolator.EASE_BOTH);
+    }
+
+    @Override
+    public Transition closeNode() {
+        return AnimationHelper.slideOutToTop(center,400,Interpolator.EASE_BOTH);
+    }
 }
