@@ -224,45 +224,45 @@ public class AnimatedBorderPane extends BorderPane {
     //endregion
 
     private Transition animateBasedOnOpenType(Node node, OpenTypes openType, int duration, Interpolator interpolator) {
-        if(interpolator == null) {
+        if (interpolator == null) {
             interpolator = Interpolator.EASE_BOTH;
         }
 
         switch (openType) {
             case GrowIn:
-                return AnimationHelper.growIn(node,duration,interpolator);
+                return AnimationHelper.growIn(node, duration, interpolator);
             case SlideInFromRight:
-                return AnimationHelper.slideInFromRight(node,duration,interpolator);
+                return AnimationHelper.slideInFromRight(node, duration, interpolator);
             case SlideInFromTop:
-                return AnimationHelper.slideInFromTop(node,duration,interpolator);
+                return AnimationHelper.slideInFromTop(node, duration, interpolator);
             case SlideInFromBottom:
-                return AnimationHelper.slideInFromBottom(node,duration,interpolator);
+                return AnimationHelper.slideInFromBottom(node, duration, interpolator);
             case SlideInFromLeft:
-                return AnimationHelper.slideInFromLeft(node,duration,interpolator);
+                return AnimationHelper.slideInFromLeft(node, duration, interpolator);
         }
 
-        return AnimationHelper.growIn(node,duration,interpolator);
+        return AnimationHelper.growIn(node, duration, interpolator);
     }
 
     private Transition animateBasedOnCloseType(Node node, CloseTypes closeType, int duration, Interpolator interpolator) {
-        if(interpolator == null) {
+        if (interpolator == null) {
             interpolator = Interpolator.EASE_BOTH;
         }
 
         switch (closeType) {
             case ShrinkOut:
-                return AnimationHelper.growOut(node,duration,interpolator);
+                return AnimationHelper.growOut(node, duration, interpolator);
             case SlideOutToLeft:
-                return AnimationHelper.slideOutToLeft(node,duration,interpolator);
+                return AnimationHelper.slideOutToLeft(node, duration, interpolator);
             case SlideOutToRight:
-                return AnimationHelper.slideOutToRight(node,duration,interpolator);
+                return AnimationHelper.slideOutToRight(node, duration, interpolator);
             case SlideOutToTop:
-                return AnimationHelper.slideOutToTop(node,duration,interpolator);
+                return AnimationHelper.slideOutToTop(node, duration, interpolator);
             case SlideOutToBottom:
-                return AnimationHelper.slideOutToBottom(node,duration,interpolator);
+                return AnimationHelper.slideOutToBottom(node, duration, interpolator);
         }
 
-        return AnimationHelper.growIn(node,duration,interpolator);
+        return AnimationHelper.growIn(node, duration, interpolator);
     }
 
     /**
@@ -288,7 +288,7 @@ public class AnimatedBorderPane extends BorderPane {
                 return;
             } else {
                 System.out.println("Node is standard");
-                animateBasedOnCloseType(getCenter(),centerCloseAnimation,centerDuration,centerInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getCenter(), centerCloseAnimation, centerDuration, centerInterpolator).setOnFinished(event -> {
                     System.out.println("Animation finished");
                     setCenter(null);
                     centerController = null;
@@ -305,7 +305,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setCenter(node);
             centerController = null;
-            animateBasedOnOpenType(node, centerOpenAnimation, centerDuration,centerInterpolator);
+            animateBasedOnOpenType(node, centerOpenAnimation, centerDuration, centerInterpolator);
         }
     }
 
@@ -328,7 +328,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(getTop(),topCloseAnimation,topDuration,topInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getTop(), topCloseAnimation, topDuration, topInterpolator).setOnFinished(event -> {
                     setTop(null);
                     topController = null;
                     setTopAnimated(node, controller);
@@ -344,7 +344,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setTop(node);
             topController = null;
-            animateBasedOnOpenType(node,topOpenAnimation,topDuration,topInterpolator);
+            animateBasedOnOpenType(node, topOpenAnimation, topDuration, topInterpolator);
         }
     }
 
@@ -367,7 +367,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(getLeft(),leftCloseAnimation,leftDuration,leftInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getLeft(), leftCloseAnimation, leftDuration, leftInterpolator).setOnFinished(event -> {
                     setLeft(null);
                     leftController = null;
                     setLeftAnimated(node, controller);
@@ -383,7 +383,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setLeft(node);
             leftController = null;
-            animateBasedOnOpenType(node,leftOpenAnimation,leftDuration,leftInterpolator);
+            animateBasedOnOpenType(node, leftOpenAnimation, leftDuration, leftInterpolator);
         }
     }
 
@@ -406,7 +406,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-               animateBasedOnCloseType(getRight(),rightCloseAnimation,rightDuration,rightInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getRight(), rightCloseAnimation, rightDuration, rightInterpolator).setOnFinished(event -> {
                     setRight(null);
                     rightController = null;
                     setRightAnimated(node, controller);
@@ -422,7 +422,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setRight(node);
             rightController = null;
-            animateBasedOnOpenType(node,rightOpenAnimation,rightDuration,rightInterpolator);
+            animateBasedOnOpenType(node, rightOpenAnimation, rightDuration, rightInterpolator);
         }
     }
 
@@ -445,7 +445,7 @@ public class AnimatedBorderPane extends BorderPane {
                 });
                 return;
             } else {
-                animateBasedOnCloseType(getBottom(),bottomCloseAnimation,bottomDuration,bottomInterpolator).setOnFinished(event -> {
+                animateBasedOnCloseType(getBottom(), bottomCloseAnimation, bottomDuration, bottomInterpolator).setOnFinished(event -> {
                     setBottom(null);
                     bottomController = null;
                     setBottomAnimated(node, controller);
@@ -461,7 +461,7 @@ public class AnimatedBorderPane extends BorderPane {
         } else if (node != null) {
             setBottom(node);
             bottomController = null;
-            animateBasedOnOpenType(node,bottomOpenAnimation,bottomDuration,bottomInterpolator);
+            animateBasedOnOpenType(node, bottomOpenAnimation, bottomDuration, bottomInterpolator);
         }
     }
 
